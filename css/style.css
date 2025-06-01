@@ -1481,7 +1481,7 @@
 .mission-vision-section {
   position: relative;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-              url('https://github.com/Pluswavenet/carmelrani/blob/main/img/christmas.jpg');
+              url('carmelrani/img/christmas.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
