@@ -1477,17 +1477,7 @@
   color: #f5f5f5;
 }
 
-/* Ensure section background and structure */
-.mission-vision-section {
-  position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-              url('carmelrani/img/christmas.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  padding: 80px 20px;
-  color: #fff;
-}
+
 
 /* Responsive Fix */
 @media (max-width: 768px) {
