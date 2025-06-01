@@ -1755,8 +1755,8 @@
   .modern-award-card {
   background: #ffffff;
   border-radius: 20px;
-  min-width: 350px;
-  max-width: 350px;
+  min-width: 300px;
+  max-width: 300px;
   flex-shrink: 0;
   scroll-snap-align: start; /* Snaps each card */
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
