@@ -125,7 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Principal Message
+// courasal
+
 
 
 
@@ -245,24 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // latest news
-let index = 0;
-const track = document.getElementById("tickerTrack");
-const items = document.querySelectorAll(".news-item");
 
-function scrollTicker() {
-  index = (index + 1) % items.length;
-  track.style.transform = `translateX(-${index * 100}%)`;
-}
-
-setInterval(scrollTicker, 3000); // every 3 seconds
-
-// Highlight news item on date click
-document.querySelectorAll('.news-date').forEach(date => {
-  date.addEventListener('click', () => {
-    const item = date.closest('.news-item');
-    item.classList.toggle('highlighted');
-  });
-});
 
 // about us
 // Auto play video in modal
