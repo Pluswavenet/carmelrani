@@ -1721,15 +1721,64 @@
 }
 
 /* Scroll container with snap */
+/* --- 1. The Container (Your original code + updates) --- */
 .modern-awards-row {
   display: flex;
   flex-wrap: nowrap;
-  gap: 20px;
+  gap: 24px;                 /* Increased gap for breathable layout */
   overflow-x: auto;
-  padding-bottom: 10px;
+  padding: 20px 5px 30px 5px; /* Top, Right, Bottom (room for shadow), Left */
   scroll-behavior: smooth;
-  scroll-snap-type: x mandatory; /* Enables snap */
+  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  
+  /* Modern Scrollbar Handling */
+  scrollbar-width: thin;          /* Firefox: Makes it thin */
+  scrollbar-color: #888 #f1f1f1;  /* Firefox: Thumb and Track colors */
+}
+
+/* --- 2. The Custom Scrollbar (Chrome, Edge, Safari) --- */
+.modern-awards-row::-webkit-scrollbar {
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+.modern-awards-row::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the background track */
+  border-radius: 10px;
+}
+
+.modern-awards-row::-webkit-scrollbar-thumb {
+  background: #c1c1c1; /* Color of the sliding handle */
+  border-radius: 10px; /* Round edges */
+  transition: background 0.3s;
+}
+
+.modern-awards-row::-webkit-scrollbar-thumb:hover {
+  background: #888; /* Darker color when you hover over the bar */
+  cursor: pointer;
+}
+
+/* --- scroll bar --- */
+.achievement-card {
+  /* Layout */
+  flex: 0 0 300px; /* Don't shrink, fixed width of 300px */
+  scroll-snap-align: center; /* Snaps card to center when scrolling stops */
+  
+  /* Visual Style */
+  background: #ffffff;
+  border-radius: 16px; /* Smooth rounded corners */
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.05); /* Very subtle border */
+  
+  /* Modern Shadow & Float Effect */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease; /* Smooth animation for hover */
+}
+
+/* Hover Effect: The card lifts up slightly */
+.achievement-card:hover {
+  transform: translateY(-5px); /* Moves up */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Each card snaps to the center */
