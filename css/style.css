@@ -1722,15 +1722,63 @@
 
 /* Scroll container with snap */
 
+/* --- 1. The Container --- */
 .modern-awards-row {
   display: flex;
   flex-wrap: nowrap;
-  gap: 20px;
+  gap: 24px;
   overflow-x: auto;
-  padding-bottom: 10px;
-  scroll-behavior: smooth;]
-  scroll-snap-type: x mandatory; /* Enables snap */
+  padding: 20px 5px 30px 5px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+
+  /* Firefox Scrollbar Colors (Thumb, Track) */
+  scrollbar-width: thin;
+  scrollbar-color: #87CEFA #F0F8FF; 
+}
+
+/* --- 2. The Custom Scrollbar (Chrome, Edge, Safari) --- */
+
+/* Width/Height of the scrollbar */
+.modern-awards-row::-webkit-scrollbar {
+  height: 8px; /* Horizontal scrollbar height */
+}
+
+/* The Background Track */
+.modern-awards-row::-webkit-scrollbar-track {
+  background: #F0F8FF; /* AliceBlue - A very faint blue background */
+  border-radius: 10px;
+}
+
+/* The Moving Handle */
+.modern-awards-row::-webkit-scrollbar-thumb {
+  background: #87CEFA; /* Light Sky Blue */
+  border-radius: 10px; /* Rounded pill shape */
+  transition: background 0.3s;
+}
+
+/* Hover Effect (When you touch the scrollbar) */
+.modern-awards-row::-webkit-scrollbar-thumb:hover {
+  background: #00BFFF; /* Deep Sky Blue - Gets slightly darker on hover */
+  cursor: pointer;
+}
+
+/* --- 3. The Item Cards (Same as before) --- */
+.achievement-card {
+  flex: 0 0 300px;
+  scroll-snap-align: center;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Each card snaps to the center */
