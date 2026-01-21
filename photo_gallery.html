@@ -418,116 +418,464 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 </script>
 
-<section class="photo-section">
-  <h2 class="sectionn-heading">School Photo Gallery</h2>
-
-  <div class="rows-container">
-
-    <!-- Row 1 -->
-    <div class="photo-row-block">
-      <h3 class="group-heading">Carmel Day</h3>
-      <div class="photo-row">
-        <img src="img/cd.JPG" alt="Photo 1">
-        <img src="img/cd1.JPG" alt="Photo 2">
-        <img src="img/cd2.JPG" alt="Photo 3">
-        <img src="img/cd3.JPG" alt="Photo 4">
-        <img src="img/cd4.jpg" alt="Photo 5">
-      </div>
-    </div>
-
-    <!-- Row 2 -->
-    <div class="photo-row-block">
-      <h3 class="group-heading">Children's Day</h3>
-      <div class="photo-row">
-        <img src="img/cdd.jpg" alt="Photo 6">
-        <img src="img/cdd1.jpg" alt="Photo 7">
-        <img src="img/cdd2.jpg" alt="Photo 8">
-        <img src="img/cdd3.jpg" alt="Photo 9">
-        <img src="img/cdd4.jpg" alt="Photo 10">
-      </div>
-    </div>
-    <!-- Repeat similarly for rows 3 to 10 -->
-  </div>
-</section>
-
 <style>
-  .photo-section {
-  background-color: #e9e9e9;
-  max-width: 1500px;
-  margin: 100px auto;
-  padding: 0 30px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
+            color: #1e293b;
+        }
 
-.sectionn-heading{
-  text-align: center;
- font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #ff0000;
-  font-weight: 600;
-}
+        .gallery-page-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
 
-.group-heading {
-  font-size: 1.8rem;
-  margin: 30px 0 15px;
-  color: #34495e;
-  font-weight: 600;
-  border-left: 5px solid #3498db;
-  padding-left: 15px;
-}
+        .gallery-page-title {
+            text-align: center;
+            font-size: 3rem;
+            color: #0f172a;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+        }
 
-/* Each row block with heading and photos */
-.photo-row-block {
-  margin-bottom: 50px;
-}
+        .gallery-page-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #ec4899);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
 
-.row-heading {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #34495e;
-  font-weight: 600;
-}
+        /* --- Improved Gallery Layout (Responsive Grid) --- */
+        .photo-row-block {
+            margin-bottom: 5rem;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
 
-/* The photo row with images horizontally */
-.photo-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
-/* Each image vertical style with border and shadow */
-.photo-row img {
-  width: 18%;  /* Five photos horizontally */
-  border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
 
-.photo-row img:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
-}
+        .group-heading {
+            font-size: 2rem;
+            /* Increased Size */
+            margin: 0 0 2rem 0;
+            color: #1e293b;
+            font-family: 'Poppins', sans-serif;
+            /* Poppins Font */
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.02em;
+        }
 
-/* Responsive adjustments */
-@media (max-width: 900px) {
-  .photo-row {
-    flex-wrap: wrap;
-  }
+        .group-heading::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 32px;
+            background: linear-gradient(to bottom, #6366f1, #ec4899);
+            margin-right: 16px;
+            border-radius: 4px;
+        }
 
-  .photo-row img {
-    width: 45%; /* 2 photos per row */
-    margin-bottom: 15px;
-  }
-}
+        .count-badge {
+            margin-left: 12px;
+            font-size: 1rem;
+            /* Increased Size */
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
 
-@media (max-width: 480px) {
-  .photo-row img {
-    width: 100%; /* 1 photo per row */
-  }
-}
+        /* Grid Layout */
+        .photo-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding-bottom: 1rem;
+        }
 
-</style>
+        /* Image Card Style */
+        .photo-row img {
+            width: 100%;
+            height: 280px;
+            /* Increased Height to match width increase */
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            background: #e2e8f0;
+            filter: brightness(0.95);
+        }
+
+        .photo-row img:hover {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .loader {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #94a3b8;
+            padding: 3rem;
+        }
+
+        /* Lightbox - Centered */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px);
+            /* Flex centering */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 95vw;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 25px;
+            /* Moved down slightly */
+            right: 30px;
+            /* Moved in slightly */
+            color: #f8fafc;
+            font-size: 3.5rem;
+            /* Slightly larger for easier tapping */
+            font-weight: 300;
+            transition: 0.2s;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 10001;
+            /* Ensure on top */
+            background: rgba(0, 0, 0, 0.2);
+            /* Subtle backing for visibility */
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 5px;
+            /* Optical center alignment */
+        }
+
+        .close-lightbox:hover {
+            color: #ec4899;
+            transform: rotate(90deg);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 640px) {
+            .gallery-page-title {
+                font-size: 2.5rem;
+            }
+
+            .photo-row {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+
+            .photo-row img {
+                height: 160px;
+                border-radius: 8px;
+            }
+        }
+
+        /* Explicit height for desktop too */
+        .photo-row img {
+            height: 280px;
+            border-radius: 12px;
+        }
+
+        /* --- Modern Pagination --- */
+        .pagination-modern {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 4rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 100px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .page-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            color: #1e293b;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(99, 102, 241, 0.35);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            background: #f1f5f9;
+            box-shadow: none;
+        }
+
+        .page-info-badge {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: #334155;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gallery-page-container">
+        
+        <div id="gallery-feed-container">
+            <div class="loader">Loading Gallery...</div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const galleryContainer = document.getElementById('gallery-feed-container');
+
+            // --- Lightbox Logic ---
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.close-lightbox');
+
+            window.openLightbox = function (src) {
+                lightbox.style.display = "flex"; // Changed to flex for centering
+                lightboxImg.src = src;
+            }
+
+            closeBtn.onclick = function () {
+                lightbox.style.display = "none";
+            }
+
+            lightbox.onclick = function (e) {
+                if (e.target === lightbox) lightbox.style.display = "none";
+            }
+
+            // --- Database Fetch ---
+            if (typeof db === 'undefined') {
+                galleryContainer.innerHTML = '<p class="loader">Error: Database connection failed.</p>';
+                return;
+            }
+
+            db.collection("gallery_images").orderBy("timestamp", "asc") // Changed to 'asc' so first added comes first
+
+                .onSnapshot((snapshot) => {
+                    if (snapshot.empty) {
+                        galleryContainer.innerHTML = '<p class="loader">No photos found.</p>';
+                        return;
+                    }
+
+                    // Group by Category
+                    const groups = {}
+
+                        ;
+
+                    snapshot.forEach(doc => {
+                        const data = doc.data();
+                        const cat = data.category || "General";
+                        if (!groups[cat]) groups[cat] = [];
+                        groups[cat].push(data);
+                    });
+
+                    let html = '';
+
+                    // Sort Groups by Earliest Image Timestamp to match Admin/Landing order
+                    const groupList = Object.keys(groups).map(cat => {
+                        const imgs = groups[cat];
+
+                        // Sort images ASC with Tie-Breaker
+                        imgs.sort((a, b) => {
+                            const tsA = a.timestamp || 0;
+                            const tsB = b.timestamp || 0;
+                            if (tsA !== tsB) return tsA - tsB;
+                            // Tie-Breaker for identical timestamps (Batch Uploads)
+                            const pathA = a.storagePath || a.url || '';
+                            const pathB = b.storagePath || b.url || '';
+                            return pathA.localeCompare(pathB);
+                        });
+
+                        // Default to 0 (Old) if timestamp missing
+                        const created = (imgs.length > 0) ? (imgs[0].timestamp || 0) : Infinity;
+
+                        return {
+                            category: cat, images: imgs, created: created
+                        }
+
+                            ;
+                    });
+
+                    // Sort: Oldest Group First
+                    groupList.sort((a, b) => a.created - b.created);
+
+                    // Store Globals
+                    window.allGalleryGroups = groupList;
+                    renderGalleryPage();
+
+                }
+
+                    , (error) => {
+                        console.error(error);
+                        galleryContainer.innerHTML = '<p class="loader">Error loading photos.</p>';
+                    });
+        });
+
+        // --- Pagination Logic ---
+        window.galleryCurrentPage = 1;
+        const ITEMS_PER_PAGE = 5;
+
+        window.changeGalleryPage = function (delta) {
+            window.galleryCurrentPage += delta;
+            renderGalleryPage();
+
+            // Scroll to top of gallery
+            document.getElementById('gallery-feed-container').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function renderGalleryPage() {
+            const galleryContainer = document.getElementById('gallery-feed-container');
+            if (!window.allGalleryGroups || window.allGalleryGroups.length === 0) return;
+
+            const totalPages = Math.ceil(window.allGalleryGroups.length / ITEMS_PER_PAGE);
+
+            // Validate Page
+            if (window.galleryCurrentPage > totalPages) window.galleryCurrentPage = totalPages;
+            if (window.galleryCurrentPage < 1) window.galleryCurrentPage = 1;
+
+            const startIndex = (window.galleryCurrentPage - 1) * ITEMS_PER_PAGE;
+            const paginatedItems = window.allGalleryGroups.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+            let html = '';
+
+            paginatedItems.forEach((item, index) => {
+                const categoryName = item.category;
+                const images = item.images; // Already sorted
+
+                let imagesHtml = '';
+
+                images.forEach(img => {
+                    imagesHtml += `<img src="${img.url}" alt="${categoryName}" onclick="openLightbox(this.src)" loading="lazy" >`;
+                });
+
+                html += `
+                <div class="photo-row-block" style="animation-delay: ${index * 0.15}s">
+                    <h3 class="group-heading">
+                        ${categoryName}
+                        <span class="count-badge">${images.length}</span>
+                    </h3>
+                    <div class="photo-row">
+                        ${imagesHtml}
+                    </div>
+                </div>`;
+            });
+
+            // Pagination Controls (Always Visible, Modern Look)
+            if (true) {
+                html += `
+                <div class="pagination-modern">
+                    <button onclick="changeGalleryPage(-1)" class="page-btn" ${window.galleryCurrentPage === 1 ? 'disabled' : ''}>
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <span class="page-info-badge">Page ${window.galleryCurrentPage} <span style="color:#cbd5e1; margin:0 4px;">/</span> ${totalPages}</span>
+                    <button onclick="changeGalleryPage(1)" class="page-btn" ${window.galleryCurrentPage === totalPages ? 'disabled' : ''}>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>`;
+            }
+
+            galleryContainer.innerHTML = html;
+        }
+
+    </script>
 
 
 
