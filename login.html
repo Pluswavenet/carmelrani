@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - School News</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Split Split Layout Styles */
+        body.login-body {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: stretch !important;
+            justify-content: flex-start !important;
+            min-height: 100vh !important;
+            padding: 0 !important;
+            background: white !important;
+            overflow: hidden !important;
+        }
+
+        .login-visual-side {
+            flex: 1;
+            background: var(--primary-gradient);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            display: none;
+            /* Hidden on mobile */
+        }
+
+        @media(min-width: 768px) {
+            .login-visual-side {
+                display: flex;
+            }
+        }
+
+        .login-visual-content {
+            z-index: 2;
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            max-width: 500px;
+        }
+
+        .login-visual-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .login-visual-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .orb-1 {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .login-form-side {
+            flex: 0 0 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: white;
+            position: relative;
+        }
+
+        @media(min-width: 768px) {
+            .login-form-side {
+                flex: 0 0 500px;
+            }
+
+            /* Fixed width on desktop */
+        }
+
+        .login-card-clean {
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .form-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-header h2 {
+            font-size: 2rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--text-muted);
+        }
+
+        .modern-input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .modern-input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .modern-input-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: 0.2s;
+            background: #f8fafc;
+        }
+
+        .modern-input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+        }
+
+        .btn-fluid {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body class="login-body">
+
+    <!-- Left Side: Visual -->
+    <div class="login-visual-side">
+        <div class="orb-1"></div>
+        <div class="login-visual-content">
+            <h1>School Editor.</h1>
+            <p>Manage announcements, news, and updates seamlessly from one beautiful dashboard.</p>
+        </div>
+    </div>
+
+    <!-- Right Side: Form -->
+    <div class="login-form-side">
+        <div class="login-card-clean">
+            <div class="form-header">
+                <h2>Welcome back</h2>
+                <p>Please enter your details to sign in.</p>
+            </div>
+
+            <div id="login-error" class="error-msg hidden"></div>
+
+            <form id="login-form">
+                <div class="modern-input-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="admin@school.com" required>
+                </div>
+
+                <div class="modern-input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="submit-btn btn-fluid">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase Compat SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <!-- Logic -->
+    <script src="firebase-config.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>

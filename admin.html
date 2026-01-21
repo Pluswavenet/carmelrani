@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School News - Admin Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app" class="hidden"> <!-- Hidden by default until auth check passes -->
+        <!-- Header -->
+        <!-- Header -->
+        <header class="main-header">
+            <div class="logo">Admin<span>Portal</span></div>
+            <nav style="display: flex; gap: 0.75rem; align-items: center;">
+                <a href="blog.html" class="nav-btn">View Site</a>
+                <!-- News Btn Removed -->
+                <button id="view-gallery-btn" class="nav-btn gallery-nav-active">Gallery</button>
+                <button id="logout-btn" class="nav-btn"
+                    style="background: var(--text-main); color: white; border: none;">Logout</button>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main>
+            <!-- NEWS FEED (Hidden/Removed access) -->
+            <section id="news-feed" class="feed-container hidden">
+                <div class="loading-spinner" id="feed-loader"></div>
+            </section>
+
+            <!-- GALLERY MANAGER (Default & Only View) -->
+            <section id="gallery-manager">
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Gallery Items Injected Here -->
+                </div>
+                <div class="loading-spinner hidden" id="gallery-loader"></div>
+            </section>
+
+            <!-- Admin Editor View (News) - REMOVED -->
+            <!-- Use Archive or delete entirely. Deleting per user request. -->
+
+            <!-- Gallery Editor View -->
+            <section id="gallery-editor" class="editor-panel hidden">
+                <div class="editor-card">
+                    <div class="editor-header">
+                        <h2>Add Photos</h2>
+                        <button id="close-gallery-editor-btn" class="icon-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <form id="gallery-form">
+                        <div class="form-group">
+                            <label for="gallery-category">Album Name</label>
+                            <input type="text" id="gallery-category" list="category-suggestions"
+                                placeholder="e.g. Annual Sports Day" required autocomplete="off">
+                            <datalist id="category-suggestions">
+                                <!-- Populated via JS -->
+                            </datalist>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="image-upload-label" for="gallery-image">
+                                <div class="icon-box">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                        <polyline points="21 15 16 10 5 21"></polyline>
+                                    </svg>
+                                </div>
+                                <span id="gallery-upload-text">Select Photos (Max 4)</span>
+                                <input type="file" id="gallery-image" accept="image/*" multiple required>
+                            </label>
+                            <div id="gallery-preview-container" class="hidden" style="margin-top:1rem;">
+                                <div id="gallery-previews" class="gallery-preview-strip">
+                                    <!-- Previews injected here -->
+                                </div>
+
+                                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                                    <button type="button" id="change-gallery-btn" class="btn-change-photo">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M23 4v6h-6"></path>
+                                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                                        </svg>
+                                        Change Photos
+                                    </button>
+
+                                    <button type="button" id="clear-gallery-images-btn" class="btn-text text-danger"
+                                        style="
+                                        background: #fff1f2;
+                                        color: #e11d48;
+                                        border: 1px solid #fda4af;
+                                        padding: 0.75rem 1.25rem;
+                                        border-radius: 10px;
+                                        font-weight: 600;
+                                        cursor: pointer;
+                                    ">
+                                        Clear All
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn" style="margin-bottom: 2rem;">Upload to
+                                Gallery</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+
+        <button id="fab-write" class="fab">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </button>
+
+        <!-- Custom Modal -->
+        <div id="custom-modal" class="modal-overlay hidden">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3 id="modal-title">Confirm Action</h3>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-message">Are you sure you want to proceed?</p>
+                    <div id="modal-input-container" class="hidden">
+                        <input type="text" id="modal-input" class="modal-input-field">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="modal-cancel-btn" class="modal-btn btn-secondary">Cancel</button>
+                    <button id="modal-confirm-btn" class="modal-btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <!-- Loading Screen while checking auth -->
+    <div id="auth-loading" style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div class="loading-spinner" style="border-top-color: #be123c;"></div>
+    </div>
+
+    <!-- Hidden Input for Replacing Gallery Images -->
+    <input type="file" id="replace-gallery-input" style="display: none;" accept="image/*">
+
+    <!-- Firebase Compat SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script> <!-- Added Auth -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+    <!-- Admin Logic -->
+    <script src="firebase-config.js"></script>
+    <script src="admin_config.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
