@@ -418,7 +418,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 </script>
 
-<style>
+      <style>
         body {
             margin: 0;
             padding: 0;
@@ -618,17 +618,78 @@ document.addEventListener("DOMContentLoaded", function () {
         /* Responsive Adjustments */
         @media (max-width: 640px) {
             .gallery-page-title {
-                font-size: 2.5rem;
+                font-size: 2rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            .group-heading {
+                /* Font size auto-shrink logic */
+                font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                /* Required for text-overflow to work well with width */
+                margin-bottom: 1rem !important;
+                position: relative;
+                padding-left: 12px;
+            }
+
+            /* Adjust the decorative bar to fit new size */
+            .group-heading::before {
+                height: 24px;
+                margin-right: 8px;
+                vertical-align: middle;
+            }
+
+            .count-badge {
+                font-size: 1.0rem;
+                padding: 2px 8px;
+                margin-left: 8px;
+                vertical-align: middle;
             }
 
             .photo-row {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 1rem;
+                grid-template-columns: repeat(2, 1fr);
+                /* Force 2 columns */
+                gap: 0.8rem;
             }
 
             .photo-row img {
-                height: 160px;
+                height: 140px;
+                /* Reduced height for proportion */
                 border-radius: 8px;
+            }
+
+            /* Pagination Mobile Fix */
+            .pagination-modern {
+                width: 95%;
+                max-width: 100%;
+                gap: 0.5rem;
+                padding: 0.5rem 0.5rem;
+                flex-wrap: nowrap !important;
+                /* Force single line */
+                justify-content: space-between !important;
+                margin-top: 2rem;
+                border-radius: 50px;
+            }
+
+            .page-btn {
+                width: 36px !important;
+                height: 36px !important;
+                flex-shrink: 0;
+                /* Do not shrink buttons */
+            }
+
+            .page-info-badge {
+                font-size: 1.1rem;
+                padding: 0 0.2rem;
+                white-space: nowrap;
+                /* Keep text on one line */
+                flex-shrink: 1;
+                /* Allow shrinking if absolutely needed */
+                overflow: visible;
+                letter-spacing: 0;
             }
         }
 
@@ -696,6 +757,7 @@ document.addEventListener("DOMContentLoaded", function () {
             padding: 0 1rem;
         }
     </style>
+
 </head>
 
 <body>
