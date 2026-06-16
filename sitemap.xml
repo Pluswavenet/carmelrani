@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://carmelranipublicschool.com/index.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- About Us Section -->
+  <url>
+    <loc>https://carmelranipublicschool.com/principal_message.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carmelranipublicschool.com/our_inspiration.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Academics Section -->
+  <url>
+    <loc>https://carmelranipublicschool.com/curriculum.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://carmelranipublicschool.com/academic_calendar.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carmelranipublicschool.com/school_system.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://carmelranipublicschool.com/results.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carmelranipublicschool.com/school_anthem.html</loc>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Facilities Section -->
+  <url>
+    <loc>https://carmelranipublicschool.com/academic_facilities.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carmelranipublicschool.com/transportation.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- CBSE Section -->
+  <url>
+    <loc>https://carmelranipublicschool.com/mpd.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://carmelranipublicschool.com/cbse.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Gallery Section -->
+  <url>
+    <loc>https://carmelranipublicschool.com/photo_gallery.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://carmelranipublicschool.com/video_gallery.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Contact Us -->
+  <url>
+    <loc>https://carmelranipublicschool.com/contact_us.html</loc>
+    <priority>0.9</priority>
+  </url>
+</urlset>
