@@ -713,6 +713,7 @@
     }
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @media (max-width: 991px) {
     /* Nav links font and bold */
     .navbar-light .navbar-nav .nav-link {
